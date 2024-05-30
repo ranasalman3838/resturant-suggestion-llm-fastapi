@@ -17,11 +17,14 @@ app.add_middleware(
 
 @app.get("/resturant_idea_suggestion/{resturant_type}")
 async def get_resturant_idea(resturant_type: str):
-    name = get_name(resturant_type)
+    try:
+        name = get_name(resturant_type)
+    except:
+        return {"error": "An error occurred while fetching the resturant name and menu items."}
     resturant_name = name['resturant_name'].strip().replace('\n', '').replace('"', '')
-    menu_items = name['menu_items'].replace('\n','').split(',')
+    menu_items = name['menu_items'].replace('\n', '').split(',')
 
-    return {"resturant_name":resturant_name, "menu_items":menu_items}
+    return {"resturant_name": resturant_name, "menu_items": menu_items}
 
 
 if __name__ == "__main__":

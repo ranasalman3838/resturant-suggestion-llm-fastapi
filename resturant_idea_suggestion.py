@@ -26,7 +26,7 @@ def get_name(resturant_type):
     name_chain = LLMChain(llm=llm, prompt=prompt_template_name,output_key='resturant_name')
     prompt_template_items = PromptTemplate(
         input_variables=['resturant_name'],
-        template="Suggest me some menu items  for {resturant_name} food. send them in comma separated format"
+        template="Suggest me some menu items for {resturant_name} resturant. send them in comma separated format"
     )
     chain = LLMChain(llm=llm, prompt=prompt_template_items,  output_key='menu_items')
 
